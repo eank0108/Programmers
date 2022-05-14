@@ -1,4 +1,4 @@
-class Q31 {
+class Q30 {
     public int solution(int[][] sizes) {
         int answer = 0;
         int[] wallet = {0,0};
