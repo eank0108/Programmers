@@ -1,5 +1,5 @@
 class Q30 {
-    public int solution(int[][] sizes) {
+    public static int solution(int[][] sizes) {
         int answer = 0;
         int[] wallet = {0,0};
         for(int i = 0; i < sizes.length; i ++){
@@ -11,6 +11,9 @@ class Q30 {
 
         }
         return wallet[0] * wallet[1];
+    }
+    public static void main(String[] args) {
+        System.out.println(solution(new int[][]{{60, 50}, {30, 70}, {60, 30}, {80, 40}}));
     }
 }
 
