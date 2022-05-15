@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 class Q11 {
     public long[] solution(int x, int n) {
-        ArrayList<Long> arr = new ArrayList();
+        ArrayList<Long> arr = new ArrayList<>();
         for(int i = 1; i < n+1; i++){
             arr.add((long)x*i);
         }
