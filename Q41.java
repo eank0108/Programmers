@@ -92,8 +92,6 @@ class Q41 {
         System.out.println(arr);
 
 
-
-
         for (int i = 0; i < arr.size(); i++) {
             retArr.add(arr.get(i));
             if(n == 1){
