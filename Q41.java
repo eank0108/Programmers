@@ -83,19 +83,38 @@ class Q41 {
         System.out.println(divs);
         return ret;
     }
-    public static void select2(ArrayList<Integer> arr,int n){
+    public static ArrayList<Integer> select2(ArrayList<Integer> arr,int n){
         // [2,2,2,3,5] 중 2개 뽑는 함수
-//        ArrayList<Integer> arr = new ArrayList<>(Arrays.asList(2,2,2,3,5));
-        while (n>0){
-            for (int i = 0; i < arr.size(); i++) {
-                
+        // 배열에서 n 개를 뽑는 함수
+
+        ArrayList<Integer> retArr = new ArrayList<>(Arrays.asList(2,2,2,3,5));
+
+        System.out.println(arr);
+
+
+        for (int i = 0; i < arr.size(); i++) {
+            retArr.add(arr.get(i));
+            if(n == 1){
+                return retArr;
+            }else{
+                retArr=select2(arr,--n);
             }
-            n--;
         }
+
+
+//
+//        for (int i = 0; i < arr.size(); i++) {
+//            retArr.add(arr.get(i));
+//            arr.remove(i);
+//            if(n != 0)
+//            retArr = select2(arr, n-1);
+//        }
+        return retArr;
 
     }
 
     public static void main(String[] args) {
-        System.out.println(solution(3,4));
+//        System.out.println(solution(3,4));
+        System.out.println(select2(new ArrayList<>(Arrays.asList(2,2,2,3,5)),3));
     }
 }
