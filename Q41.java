@@ -2,10 +2,28 @@ import java.util.*;
 class Q41 {
     public static int solution(int left, int right) {
         int answer = 0;
-        getDiv(120);
+        int divCount = 0;
+        for (int i = left; i <= right; i++) {
+            divCount = getDivCount(i);
+            answer += (divCount % 2 == 0 ? 1 : -1) * i;
+            System.out.println(answer);
+        }
         return answer;
     }
 
+    public static int getDivCount(int num) {
+        int answer = 0;
+        for (int i = 1; i <= (int) Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                answer+=2;
+            }
+            if (i == Math.sqrt(num)) {
+                answer--;
+            }
+        }
+        System.out.println("num " +num +", answer " + answer);
+        return answer;
+    }
     public static int getDiv(int dividor) {
         int ret =0;
         /*
@@ -83,37 +101,59 @@ class Q41 {
         System.out.println(divs);
         return ret;
     }
+    public static ArrayList<Integer> select3(ArrayList<Integer> arr,int n){
+        ArrayList<Integer> retArr = new ArrayList<>();
+        ArrayList<Integer> tempArr = new ArrayList<>();
+        tempArr = new ArrayList<>(arr);
+        tempArr.remove(3);
+        System.out.println("arr = " + arr);
+        System.out.println("tempArr = " + tempArr);
+        tempArr.remove(3);
+        System.out.println("arr = " + arr);
+        System.out.println("tempArr = " + tempArr);
+        return retArr;
+    }
     public static ArrayList<Integer> select2(ArrayList<Integer> arr,int n){
         // [2,2,2,3,5] 중 2개 뽑는 함수
-        // 배열에서 n 개를 뽑는 함수
+        // 배열에서 n 개를 뽑아서 곱한 값을 중복 없이 배열에 담아 리턴하는 함수
 
-        ArrayList<Integer> retArr = new ArrayList<>(Arrays.asList(2,2,2,3,5));
-
-        System.out.println(arr);
-
+        if (n == 1) {
+            return arr;
+        }
+        int ret = 1;
+        ArrayList<Integer> retArr = new ArrayList<>();
+        ArrayList<Integer> tempArr;
         for (int i = 0; i < arr.size(); i++) {
-            retArr.add(arr.get(i));
-            if(n == 1){
-                return retArr;
-            }else{
-                retArr=select2(arr,--n);
+            ret = 1;
+            tempArr = new ArrayList<>(arr);
+
+            ret = ret * arr.get(i);
+            tempArr.remove(i);
+            ArrayList<Integer> ret_select2 = select2(tempArr, n-1);
+
+            for (int j = 0; j < ret_select2.size(); j++) {
+                retArr.add(ret * ret_select2.get(j));
             }
         }
-
-
-//
-//        for (int i = 0; i < arr.size(); i++) {
-//            retArr.add(arr.get(i));
-//            arr.remove(i);
-//            if(n != 0)
-//            retArr = select2(arr, n-1);
-//        }
+        HashSet<Integer> dup = new HashSet<>(retArr);
+        retArr = new ArrayList<Integer>(dup);
         return retArr;
 
     }
+    public static int factorial(int n) {
+//        1~n까지 곱하는 함수
+        if (n == 1) {
+            return 1;
+        }
+        int ret = n;
+
+        ret = ret * factorial(n - 1);
+        return ret;
+    }
 
     public static void main(String[] args) {
-//        System.out.println(solution(3,4));
-        System.out.println(select2(new ArrayList<>(Arrays.asList(2,2,2,3,5)),3));
+        System.out.println(solution(13,17));
+//        System.out.println(factorial(3));
+//        System.out.println(select2(new ArrayList<>(Arrays.asList(1,1,1,1,1,2,2,2,3,5)),5));
     }
 }
