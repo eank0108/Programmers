@@ -1,34 +1,22 @@
-import java.util.Arrays;
 
 public class Main {
-    public int[][] solution(int[][] arr1, int[][] arr2, boolean[][] signs) {
-        // answer 배열을 초기화, arr1, arr2, signs 배열의 각 크기는 다를 수가 없음
-        int[][] answer = new int[arr1.length][arr1[0].length];
+    public static void func(){
 
-        for (int i = 0; i < arr1.length; i++) {
-            for (int j = 0; j < arr1[0].length; j++) {
-                // signs 의 해당 인덱스 를 찾아서 true 1, false 면 -1
-                int sign = signs[i][j] ? 1 : -1;
-
-                //arr1,arr2 의 해당 인덱스 값들의 합에 부호 sign을 곱해줌
-                answer[i][j] = (arr1[i][j] + arr2[i][j]) * sign;
+        int[] array = new int[]{0,2,3,6,1,7,8,9,4,5};
+        int temp; // 배열의 값을 변경하기 위한 임시값
+        for (int i = 0; i < array.length; i++) {
+            for (int j = i+1; j < array.length; j++) {
+                if (array[i] > array[j]) {
+                    // i번째 값이 j 번째 값보다 크다면 위치를 변경해줌
+                    temp = array[i];
+                    array[i] = j;
+                    array[j] = temp;
+                }
             }
         }
-
-        return answer;
     }
-
+    // N 의 크기를 갖는 배열을 정렬해야 할 경우 N+(N-1)+(N-2)... 3+2+1 즉 N(N+1)/2 ,N^2에 비례함, 시간복잡도 N^2
     public static void main(String[] args) {
-        Main method = new Main();
-//        int[][] arr1 = {{1,2},{2,3}};
-//        int[][] arr2 = {{3,4},{5,6}};
-//        boolean[][] signs={{true,true},{true,false}};
-        int[][] arr1 = {{1},{2}};
-        int[][] arr2 = {{3},{4}};
-        boolean[][] signs={{false},{false}};
-//        int[][] arr1 = {{5,7,1},{2,3,5}};
-//        int[][] arr2 = {{5,1,6},{7,5,6}};
-//        boolean[][] signs={{true,true,false},{false,true,false}};
-        System.out.println(Arrays.deepToString(method.solution(arr1, arr2, signs)));
+
     }
 }
